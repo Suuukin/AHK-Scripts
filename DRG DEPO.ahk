@@ -15,50 +15,27 @@ F4::
 return
 
 $XButton1::
-     if (depot = 0){
-          depot = 1
+     depot = 1
+     while (depot = 1){
+          Send, e
+          sleep, 100
+          ;Send, {RButton}
      }
-     else if (depot = 1){
-          depot = 0
-     }
-Return
+return
+
+$XButton1 UP::
+     depot = 0
+return
 
 $Xbutton2::
-     if (axe = 0){
-          axe = 1
-     }
-     else if (depot = 1){
-          axe = 0
+     axe = 1
+     while (axe = 1) {
+          Send, {MButton}
+          sleep, 100
+          Send, {RButton}
      }
 Return
 
-
-$e::
-     check:
-     if (depot = 1){
-          pressed := GetKeyState("e","P")
-          while (pressed = 1) {
-               Send, e
-               sleep, 20
-               Send, {RButton}
-               Gosub, check
-     }
-     }    
-     else {
-          send, e
-     }
-
-$g::
-     jump:
-     if (depot = 1){
-          pressed := GetKeyState("g","P")
-          while (pressed = 1) {
-               Send, {MButton}
-               sleep, 20
-               Send, {RButton}
-               Gosub, jump
-     }
-     }    
-     else {
-          send, e
-     }
+$Xbutton2 UP::
+     axe = 0
+Return
